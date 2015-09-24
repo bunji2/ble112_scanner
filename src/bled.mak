@@ -17,7 +17,7 @@ INC_DIR=.
 CFLAG=/nologo /W3 /DWIN32 /D_WIN32 $(CFLAG) /I $(INC_DIR)
 LINKFLAG=/nologo
 
-LIBS=setupapi.lib
+LIBS=setupapi.lib user32.lib
 
 default: buildall
 

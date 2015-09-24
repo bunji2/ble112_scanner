@@ -243,10 +243,27 @@ void parse_packet(uint8*data, uint8 datalen) {
 }
 
 void print_now() {
+/*
   char buf[80];
   time_t tp = time(NULL);
   strftime(buf, 80, "%Y/%m/%d %H:%M:%S", localtime(&tp));
   printf("%s", buf);
+*/
+  char szTime[25] = { 0 };
+  SYSTEMTIME st;
+/*
+  GetSystemTime(&st);
+  // wHourを９時間足して、日本時間にする
+  wsprintf(szTime, "%04d/%02d/%02d %02d:%02d:%02d.%03d",
+       st.wYear, st.wMonth, st.wDay+(()),
+       st.wHour + 9, st.wMinute, st.wSecond, st.wMilliseconds);
+  // wHour==15だと、wHour+9>=24 になることがあり、いけてません。
+*/
+  GetLocalTime(&st);
+  wsprintf(szTime, "%04d/%02d/%02d %02d:%02d:%02d.%03d",
+       st.wYear, st.wMonth, st.wDay,
+       st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
+  printf("%s", szTime);
 }
 
 void print_flags() {
